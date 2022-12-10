@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Cart from './componets/Cart/Cart';
+import Header from './componets/Header/Header';
+import Products from './componets/Products/Products';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path='/react-ts-shop' element={<Navigate replace to="/products" />} />
+        <Route path='/' element={<Header />}>
+          <Route path='products' element={<Products />} />
+          <Route path='cart' element={<Cart />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
