@@ -1,8 +1,11 @@
-import { Outlet } from 'react-router-dom';
-import { Layout,  Col, Row } from 'antd';
+import { NavLink, Outlet } from 'react-router-dom';
+import { Layout, Col, Row, Badge } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../hooks/redux';
 
 const Header = () => {
+	const { countProduct } = useAppSelector(state => state.sliceProducts);
+
 	return (
 		<>
 			<Layout.Header
@@ -32,12 +35,19 @@ const Header = () => {
 					>
 						Магазин товаров
 					</Col>
-					<Col >
-						<ShoppingCartOutlined
-							style={{
-								fontSize: '30px'
-							}}
-						/>
+					<Col >	
+					<NavLink
+					to='/cart'
+					>			
+						<Badge count={countProduct}>
+							<ShoppingCartOutlined
+								style={{
+									fontSize: '30px',
+									color: '#8ff2a4'
+								}}
+							/>
+						</Badge>
+						</NavLink>	
 					</Col>
 				</Row>
 			</Layout.Header>

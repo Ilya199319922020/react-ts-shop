@@ -11,7 +11,7 @@ const Products = () => {
 	useEffect(() => {
 		dispatch(fetchVideo())
 	}, []);
-
+	
 	return (
 		<Layout.Content
 			style={{
@@ -31,7 +31,9 @@ const Products = () => {
 			>
 				{
 					products.length && products
-						.map(k => <CardComponent products={k} />)
+						.map(k => <CardComponent key={k.name} products={k}
+						/>
+						)
 				}
 			</Row>
 		</Layout.Content>

@@ -12,3 +12,11 @@ export const fetchVideo = () => async (dispatch: AppDispatch) => {
 		dispatch(sliceProducts.actions.setError(e.message));
 	}
 };
+
+export const setToCart = (name: string) => async (dispatch: AppDispatch) => {
+	try {
+		dispatch(sliceProducts.actions.addToCart(name));
+	} catch (e: any) {
+		dispatch(sliceProducts.actions.setError(e.message));
+	}
+};

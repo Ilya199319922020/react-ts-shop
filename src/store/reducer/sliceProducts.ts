@@ -5,14 +5,17 @@ import { IProduct } from '../../models/IProduct';
 interface Products {
 	products: IProduct[],
 	error: string,
-	initialDealears: []
+	initialDealears: [],
+	cart: IProduct[],
+	countProduct: number
 };
 
 const initialState: Products = {
 	products: [],
 	error: '',
-	initialDealears: []
-
+	initialDealears: [],
+	cart:[],
+	countProduct: 0
 };
 
 export const sliceProducts = createSlice({
@@ -24,7 +27,13 @@ export const sliceProducts = createSlice({
 		},
 		setError(state, action: PayloadAction<string>){
 			state.error = action.payload;
-		}
+		},
+		addToCart(state, action: PayloadAction<string>){
+			const newProduct = [...state.products].filter(b => b.name ===action.payload)
+			let newCounrProduct = state.countProduct
+			state.cart =[...state.cart, ...newProduct];
+			state.countProduct = ++newCounrProduct;
+		},
 	},
 });
 

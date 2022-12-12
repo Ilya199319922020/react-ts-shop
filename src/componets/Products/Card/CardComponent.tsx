@@ -1,13 +1,22 @@
 import { Card, Col, Button } from 'antd';
 import React from 'react';
+import { useAppDispatch } from '../../../hooks/redux';
+import { setToCart } from '../../../store/reducer/ActionCreators';
 import { CardProps } from '../../../TypeProps/TypeProps';
 
 const CardComponent: React.FC<CardProps> = ({ products }) => {
 	const { name, image, price } = products;
+	const priceValue = `Цена: ${price}`;
+
+	const dispatch = useAppDispatch();
+
+	const onAddProduct = () => {
+		dispatch(setToCart(name));
+	};
+
 	return (
 		<>
 			<Col
-				key={name}
 				style={{
 					display: 'flex',
 					justifyContent: 'center'
@@ -39,6 +48,7 @@ const CardComponent: React.FC<CardProps> = ({ products }) => {
 						<Button
 							type="primary"
 							shape="circle"
+							onClick={onAddProduct}
 						>
 							+
 						</Button>
@@ -47,7 +57,7 @@ const CardComponent: React.FC<CardProps> = ({ products }) => {
 								color: '#8ff2a4',
 							}}
 							title={name}
-							description={price}
+							description={priceValue}
 						/>
 					</div>
 
