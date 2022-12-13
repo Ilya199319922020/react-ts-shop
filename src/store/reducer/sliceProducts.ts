@@ -84,6 +84,13 @@ export const sliceProducts = createSlice({
 			state.sumPrice = arr.reduce((x, y) => x + y, 0);
 			state.countProduct = action.payload.id === 'Left' ? --state.countProduct : ++state.countProduct;
 		},
+		setAllValueCart(state, action: PayloadAction<IProduct[]>) {
+			state.cart = action.payload;
+			const arr = state.cart.map(d => d.count === 1 ? d.price : d.price * d.count)
+			state.sumPrice = arr.reduce((x, y) => x + y, 0);
+			const arrCount = state.cart.map(d => d.count);
+			state.countProduct = arrCount.reduce((a, b) => a + b, 0);
+		},
 	},
 });
 

@@ -1,4 +1,5 @@
 import { Button, Col, Row } from "antd";
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { IProduct } from "../../models/IProduct";
@@ -12,6 +13,10 @@ const Cart = () => {
   const onClearCart = () => {
     dispatch(clearCartAll())
   };
+
+  useEffect(() => {
+		localStorage.setItem('cart', JSON.stringify(cart));
+	}, [cart]);
 
   if (!cart.length) {
    return  <Navigate to='/products' />
