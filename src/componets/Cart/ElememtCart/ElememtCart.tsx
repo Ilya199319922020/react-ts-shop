@@ -5,7 +5,7 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { useAppDispatch } from "../../../hooks/redux";
 import { deleteItemCart, updateValueCount } from "../../../store/reducer/ActionCreators";
 
-const ElememtCart: React.FC<ElementCartProps> = ({ product }) => {
+const ElememtCart: React.FC<ElementCartProps> =React.memo( ({ product }) => {
 	const { name, price, count, } = product;
 	const dispatch = useAppDispatch();
 
@@ -73,6 +73,6 @@ const ElememtCart: React.FC<ElementCartProps> = ({ product }) => {
 			</Row>
 		</>
 	);
-};
+});
 
 export default ElememtCart;

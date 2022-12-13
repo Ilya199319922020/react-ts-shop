@@ -4,14 +4,14 @@ import { useAppDispatch } from '../../../hooks/redux';
 import { setToCart } from '../../../store/reducer/ActionCreators';
 import { CardProps } from '../../../TypeProps/TypeProps';
 
-const CardComponent: React.FC<CardProps> = ({ products }) => {
+const CardComponent: React.FC<CardProps> = React.memo(({ products }) => {
 	const { name, image, price } = products;
 	const priceValue = `Цена: ${price}`;
 
 	const dispatch = useAppDispatch();
 
 	const onAddProduct = () => {
-			dispatch(setToCart(products));
+		dispatch(setToCart(products));
 	};
 
 	return (
@@ -60,11 +60,10 @@ const CardComponent: React.FC<CardProps> = ({ products }) => {
 							description={priceValue}
 						/>
 					</div>
-
 				</Card>
 			</Col>
 		</>
 	)
-};
+});
 
 export default CardComponent;
