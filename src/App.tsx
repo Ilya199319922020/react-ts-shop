@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Navigate replace to="/products" />} />
+        <Route path='/react-ts-shop' element={<Navigate replace to="/products" />} />
         <Route path='/' element={<Header />}>
           <Route path='products' element={<Products />} />
           <Route path='cart' element={<Cart />} />
