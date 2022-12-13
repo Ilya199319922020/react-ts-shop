@@ -1,10 +1,21 @@
 import { Button, Col, Row } from "antd";
-import { useAppSelector } from "../../hooks/redux";
+import { Navigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { IProduct } from "../../models/IProduct";
+import { clearCartAll } from "../../store/reducer/ActionCreators";
 import ElememtCart from "./ElememtCart/ElememtCart";
 
 const Cart = () => {
-  const { cart } = useAppSelector(state => state.sliceProducts);
+  const { cart , sumPrice} = useAppSelector(state => state.sliceProducts);
+  const dispatch = useAppDispatch();
+
+  const onClearCart = () => {
+    dispatch(clearCartAll())
+  };
+
+  if (!cart.length) {
+   return  <Navigate to='/products' />
+  }
 
   return (
     <>
@@ -50,15 +61,18 @@ const Cart = () => {
             )
         }
         <div>
-        <Button
-        style={{
-         marginTop: '20px',
-        }}
-        >
-          Очистить корзину
-        </Button>
-      </div>
-      </Col>  
+          <span> Суммарная стоимость товаров: {sumPrice}</span>
+          <Button
+            style={{
+              marginTop: '20px',
+              marginLeft: '50px',
+            }}
+            onClick={onClearCart}
+          >
+            Очистить корзину
+          </Button>
+        </div>
+      </Col>
     </>
   );
 };

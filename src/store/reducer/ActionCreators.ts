@@ -21,3 +21,26 @@ export const setToCart = (value: IProduct) => async (dispatch: AppDispatch) => {
 		dispatch(sliceProducts.actions.setError(e.message));
 	}
 };
+
+export const deleteItemCart = (value: IProduct) => async (dispatch: AppDispatch) => {
+	try {
+		dispatch(sliceProducts.actions.removeElementCart(value));
+	} catch (e: any) {
+		dispatch(sliceProducts.actions.setError(e.message));
+	}
+};
+export const clearCartAll = () => async (dispatch: AppDispatch) => {
+	try {
+		dispatch(sliceProducts.actions.clearCart());
+	} catch (e: any) {
+		dispatch(sliceProducts.actions.setError(e.message));
+	}
+};
+
+export const updateValueCount = (id: string, value: IProduct) => async (dispatch: AppDispatch) => {
+	try {
+			dispatch(sliceProducts.actions.updateItemValue({id, value}));
+	} catch (e: any) {
+		dispatch(sliceProducts.actions.setError(e.message));
+	}
+};

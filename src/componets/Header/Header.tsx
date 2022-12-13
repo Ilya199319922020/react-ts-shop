@@ -30,24 +30,32 @@ const Header = () => {
 				>
 					<Col
 						style={{
-							fontSize: '30px'
+							fontSize: '30px',
+							color: '#8ff2a4'
 						}}
 					>
-						Магазин товаров
+						<NavLink
+							to='/products'
+							style={{
+								color: '#8ff2a4'
+							}}
+						>
+							Магазин товаров
+						</NavLink>
 					</Col>
-					<Col >	
-					<NavLink
-					to='/cart'
-					>			
-						<Badge count={countProduct}>
-							<ShoppingCartOutlined
-								style={{
-									fontSize: '30px',
-									color: '#8ff2a4'
-								}}
-							/>
-						</Badge>
-						</NavLink>	
+					<Col >
+						<NavLink
+							to='/cart'
+						>
+							<Badge count={countProduct}>
+								<ShoppingCartOutlined
+									style={{
+										fontSize: '30px',
+										color: '#8ff2a4'
+									}}
+								/>
+							</Badge>
+						</NavLink>
 					</Col>
 				</Row>
 			</Layout.Header>

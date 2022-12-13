@@ -1,9 +1,23 @@
+import React from 'react';
 import { ElementCartProps } from "../../../TypeProps/TypeProps";
 import { Button, Row } from 'antd';
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { useAppDispatch } from "../../../hooks/redux";
+import { deleteItemCart, updateValueCount } from "../../../store/reducer/ActionCreators";
 
 const ElememtCart: React.FC<ElementCartProps> = ({ product }) => {
 	const { name, price, count, } = product;
+	const dispatch = useAppDispatch();
+
+	const onDeleteItem = () => {
+		dispatch(deleteItemCart(product));
+	};
+
+	const onUpdateCount = (e: React.MouseEvent<HTMLElement>) => {
+		e.preventDefault();
+		const { id } = e.currentTarget;
+		dispatch(updateValueCount(id, product));
+	};
 
 	return (
 		<>
@@ -30,23 +44,29 @@ const ElememtCart: React.FC<ElementCartProps> = ({ product }) => {
 					}
 				</div>
 				<div>
-					<Button 
-					size='small'
-					shape="circle" 
-					 icon={<LeftOutlined />}
+					<Button
+						id="Left"
+						size='small'
+						shape="circle"
+						icon={<LeftOutlined />}
+						onClick={onUpdateCount}
 					>
-						</Button>
+					</Button>
 					{
 						count
 					}
-					<Button 
-					size='small'
-					shape="circle" 
-					icon={<RightOutlined />} 
+					<Button
+						id="Right"
+						size='small'
+						shape="circle"
+						icon={<RightOutlined />}
+						onClick={onUpdateCount}
 					/>
 				</div>
 				<div>
-					<Button>
+					<Button
+						onClick={onDeleteItem}
+					>
 						Удалить
 					</Button>
 				</div>
