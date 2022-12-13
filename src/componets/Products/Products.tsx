@@ -6,12 +6,12 @@ import CardComponent from './Card/CardComponent';
 
 const Products = () => {
 	const dispatch = useAppDispatch();
-	const { products } = useAppSelector(state => state.sliceProducts);
-
+	const { products} = useAppSelector(state => state.sliceProducts);
+	
 	useEffect(() => {
 		dispatch(fetchVideo())
 	}, []);
-	
+
 	return (
 		<Layout.Content
 			style={{

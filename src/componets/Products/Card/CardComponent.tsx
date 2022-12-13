@@ -11,7 +11,7 @@ const CardComponent: React.FC<CardProps> = ({ products }) => {
 	const dispatch = useAppDispatch();
 
 	const onAddProduct = () => {
-		dispatch(setToCart(name));
+			dispatch(setToCart(products));
 	};
 
 	return (

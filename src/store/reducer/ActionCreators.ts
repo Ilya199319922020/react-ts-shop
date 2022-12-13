@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IProduct } from '../../models/IProduct';
 import { AppDispatch } from '../store';
 import {sliceProducts} from './sliceProducts';
 
@@ -13,9 +14,9 @@ export const fetchVideo = () => async (dispatch: AppDispatch) => {
 	}
 };
 
-export const setToCart = (name: string) => async (dispatch: AppDispatch) => {
+export const setToCart = (value: IProduct) => async (dispatch: AppDispatch) => {
 	try {
-		dispatch(sliceProducts.actions.addToCart(name));
+		dispatch(sliceProducts.actions.addToCart(value));
 	} catch (e: any) {
 		dispatch(sliceProducts.actions.setError(e.message));
 	}
