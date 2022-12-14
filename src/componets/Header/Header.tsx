@@ -25,7 +25,9 @@ const Header = () => {
 						justifyContent: 'space-between',
 						alignItems: 'center',
 						minHeight: '80px',
-						margin: '0 auto'
+						margin: '0 auto',
+						paddingLeft: '10px',
+						paddingRight: '10px'
 					}}
 				>
 					<Col
